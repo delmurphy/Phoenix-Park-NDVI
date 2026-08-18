@@ -3,3 +3,7 @@
 
 # Python
 __pycache__/
+
+# data
+data/datasources.txt
+data/dublinparks.geojson
