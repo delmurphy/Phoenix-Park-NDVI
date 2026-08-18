@@ -1,3 +1,0 @@
-geojson:
-https://data.gov.ie/dataset/parks-and-open-spaces-dcc
-accessed 15/08/2026
