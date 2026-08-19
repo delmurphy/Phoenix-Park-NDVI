@@ -88,7 +88,7 @@ PhoenixPark/
 └── requirements.txt
 ```
 
-The exploratory notebook contains the investigation of the data sources and packages, the function_creation notebook is a record of the development process, and the final notebook contains the reproducible analysis used to generate the results presented here. Reusable processing and plotting functions are stored separately in `src/ndvi.py`.
+The exploratory notebook contains the investigation of the data sources and packages, the function_creation notebook is a record of the development process, and the final notebook contains the reproducible analysis used to generate the results presented here. Reusable processing and plotting functions are stored separately in `src/ndvi_funcs.py`.
 
 
 ## 6. Reproducibility
