@@ -7,3 +7,11 @@ __pycache__/
 # data
 data/datasources.txt
 data/dublinparks.geojson
+data/sentinel-2/*
+data/processed/*
+!data/processed/phoenix_park.gpkg
+!data/processed/ndvi_vegetation_2026-07-08.tif
+!data/processed/ndvi_vegetation_2026-07-18.tif
+
+# qgis
+qgis/phoenix_park_20260708.qgz
