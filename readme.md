@@ -1,6 +1,6 @@
 # Monitoring Vegetation Change in Phoenix Park Using Sentinel-2
 
-A spatial analysis of July vegetation greenness in Dublin's Phoenix Park from 2017–2026 using Sentinel-2 satellite imagery and Python.  
+A spatial analysis of July vegetation greenness in Dublin's Phoenix Park from 2017–2026 using Sentinel-2 satellite imagery, Python and QGIS.  
 
 ## 1. Project overview
 
@@ -13,6 +13,8 @@ To find out, I took a look at vegetation greenness in Dublin's iconic Phoenix Pa
 NDVI is a widely used measure of vegetation greenness derived from satellite imagery. It compares the amount of near-infrared and red light reflected by the Earth's surface, with healthy vegetation typically reflecting strongly in the near-infrared and absorbing red light. Higher NDVI values therefore generally indicate greener, healthier vegetation.  
 
 The analysis looks at NDVI across Phoenix Park for July of each year from 2017 to 2026, producing a series of pixel-level maps that show how vegetation greenness has varied across the park and whether the exceptionally hot, dry summer of 2026 really stands out.  
+
+A follow-up analysis using QGIS examines vegetation change at a shorter temporal scale, comparing NDVI across Phoenix Park on 8 and 18 July 2026. The two Sentinel-2 acquisitions provide a spatial snapshot of how vegetation greenness changed over a 10-day period during hot, dry summer conditions.
 
 ## 2. Results  
 
@@ -54,23 +56,41 @@ This analysis has several limitations, including (but not limited to) the follow
 - July represents only a single month of each year, so the results do not capture changes in vegetation throughout the full growing season.  
 - Cloud and quality masking also mean that the number of valid observations varies between years, and the annual pixel values are composites of available observations rather than measurements taken on exactly the same day each year.  
 - NDVI can also be influenced by factors other than vegetation health, including weather, seasonal conditions, atmospheric effects and park management.  
-- Finally, a ten-year time series is relatively short for identifying long-term environmental trends, so the results should be interpreted as an indication of changes in vegetation greenness rather than evidence of a definitive long-term trend or its underlying causes.
+- Finally, a ten-year time series is relatively short for identifying long-term environmental trends, so the results should be interpreted as an indication of changes in vegetation greenness rather than evidence of a definitive long-term trend or its underlying causes.  
 
-## 5. Technical Details
+## 5. Short-term vegetation change: July 2026  
 
-This project was developed in Python and uses Sentinel-2 Level-2A imagery accessed through its STAC catalogue.  
+To complement the longer-term analysis, I used QGIS to examine vegetation condition at a finer temporal scale using two Sentinel-2 L2A acquisitions from 8 and 18 July 2026. NDVI was calculated from the red (B04) and near-infrared (B08) bands, with the Sentinel-2 Scene Classification Layer (SCL) used to retain vegetation pixels. Both maps use the same spatial extent and NDVI scale, allowing direct visual comparison of vegetation greenness across the three-week period.  
 
-The main tools and libraries used are:  
+The comparison shows a widespread reduction in vegetation greenness across the park by 18th July, although the two-date comparison is intended as a descriptive snapshot rather than evidence of a longer-term trend.
 
-* **Python** — analysis and data processing  
-* **Sentinel-2** — multispectral satellite imagery  
-* **pystac-client** — searching the Sentinel-2 STAC catalogue  
-* **odc-stac** — loading and working with STAC imagery  
-* **xarray** — working with multidimensional raster data  
-* **rioxarray** — CRS handling and clipping raster data to the Phoenix Park boundary
-* **GeoPandas** — handling the Phoenix Park boundary and spatial operations  
-* **NumPy** — numerical calculations, including NDVI  
-* **Matplotlib** — plotting and visualisation  
+<p align="center">
+  <img src="figures/Phoenix Park NDVI - 8 July 2026.png"
+       alt="Vegetation NDVI in Phoenix Park on 8 July 2026"
+       width="49%">
+  <img src="figures/Phoenix Park NDVI - 18 July 2026.png"
+       alt="Vegetation NDVI in Phoenix Park on 18 July 2026"
+       width="49%">
+</p>
+
+
+
+## 6. Technical Details
+
+The main analysis was developed in Python using Sentinel-2 Level-2A imagery accessed through the Microsoft Planetary Computer STAC catalogue. QGIS was additionally used for interactive geospatial analysis and visualisation of individual Sentinel-2 acquisitions.  
+
+The main tools and libraries used are: 
+
+* **Python** - analysis and data processing  
+* **Sentinel-2** - multispectral satellite imagery  
+* **pystac-client** - searching the Sentinel-2 STAC catalogue  
+* **odc-stac** - loading and working with STAC imagery  
+* **xarray** - working with multidimensional raster data  
+* **rioxarray** - CRS handling and clipping raster data to the Phoenix Park boundary
+* **GeoPandas** - handling the Phoenix Park boundary and spatial operations  
+* **NumPy** - numerical calculations, including NDVI  
+* **Matplotlib** - plotting and visualisation  
+* **QGIS** - raster inspection, spatial processing, vegetation masking and cartographic visualisation
 
 The repository is organised into an exploratory notebook, a clean final analysis notebook, and reusable functions:  
 
@@ -85,13 +105,15 @@ PhoenixPark/
 │   └── ndvi_funcs.py
 ├── data/
 │   └── dcc_parks_strategy2016_park_classification.geojson
+├── qgis/
+│   └── phoenix_park_20260718.qgz
 └── requirements.txt
 ```
 
 The exploratory notebook contains the investigation of the data sources and packages, the function_creation notebook is a record of the development process, and the final notebook contains the reproducible analysis used to generate the results presented here. Reusable processing and plotting functions are stored separately in `src/ndvi_funcs.py`.
 
 
-## 6. Reproducibility
+## 7. Reproducibility
 
 The analysis is designed to be reproducible from the code in this repository. The complete workflow is contained in [`3.final_analysis.ipynb`](notebooks/3.final_analysis.ipynb), with reusable processing and plotting functions in [`src/ndvi_funcs.py`](src/ndvi_funcs.py).  
 
@@ -105,3 +127,7 @@ To reproduce the analysis:
 The Sentinel-2 imagery is accessed from the STAC catalogue rather than stored in the repository, keeping the project lightweight while allowing the analysis to retrieve the required satellite data when the notebook is run.  
 
 The exploratory development process is also available in [`1.exploration.ipynb`](notebooks/01_exploration.ipynb) and [`2.function_creation.ipynb`](notebooks/2.function_creation.ipynb), which document the investigation of cloud cover, Scene Classification Layer (SCL) masking, scene selection and the development of the final analysis workflow.  
+
+A supplementary QGIS analysis was used to examine individual Sentinel-2 acquisitions from July 2026 at a finer temporal scale. The QGIS project is included in qgis/, together with the final vegetation-masked NDVI rasters used in the map layouts. The original Sentinel-2 band and Scene Classification Layer (SCL) rasters are not stored in the repository; these were accessed as Cloud Optimized GeoTIFF (COG) assets through the Microsoft Planetary Computer STAC catalogue.  
+
+The QGIS workflow included raster inspection, CRS handling, NDVI calculation, nearest-neighbour resampling of the SCL vegetation mask, raster masking and cartographic visualisation.
