@@ -18,7 +18,7 @@ A follow-up analysis using QGIS examines vegetation change at a shorter temporal
 
 ## 2. Results  
 
-The maps below show mean NDVI for each 10 × 10 m pixel in Phoenix Park for July of each year from 2017 to 2026. The same colour scale is used throughout, making it possible to compare vegetation greenness between years as well as changes in different parts of the park. Pixels without a valid vegetation observation remain blank.  
+The maps below show mean NDVI for each 10 × 10 m pixel in Phoenix Park for July of each year from 2017 to 2026. The same colour scale is used throughout, making it possible to compare vegetation greenness between years as well as changes in different parts of the park. Pixels without a valid vegetation observation, mostly due to cloud cover obscuring the satellite images, remain blank.  
 
 ![Ten maps showing pixel-level (10m x 10m) NDVI values within the Phoenix Park boundaries in July of each year from 2017-2026, with the first 5 years being noticeably greener (higher NDVI) than the latter 5 years](figures/maps.png)  
 
