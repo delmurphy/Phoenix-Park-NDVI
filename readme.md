@@ -105,6 +105,10 @@ PhoenixPark/
 │   └── ndvi_funcs.py
 ├── data/
 │   └── dcc_parks_strategy2016_park_classification.geojson
+│   └── processed/
+│       ├── ndvi_vegetation_2026-07-08.tif
+│       ├── ndvi_vegetation_2026-07-18.tif
+│       └── phoenix_park.gpkg
 ├── qgis/
 │   └── phoenix_park_20260718.qgz
 └── requirements.txt
