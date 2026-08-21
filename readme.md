@@ -60,9 +60,9 @@ This analysis has several limitations, including (but not limited to) the follow
 
 ## 5. Short-term vegetation change: July 2026  
 
-To complement the longer-term analysis, I used QGIS to examine vegetation condition at a finer temporal scale using two Sentinel-2 L2A acquisitions from 8 and 18 July 2026. NDVI was calculated from the red (B04) and near-infrared (B08) bands, with the Sentinel-2 Scene Classification Layer (SCL) used to retain vegetation pixels. Both maps use the same spatial extent and NDVI scale, allowing direct visual comparison of vegetation greenness across the three-week period.  
+To complement the longer-term analysis, I used QGIS to examine vegetation condition at a finer temporal scale using two Sentinel-2 L2A acquisitions from 8th and 18th July 2026. These dates were selected as they were the only two dates with no cloud cover over the park in July 2026. NDVI was calculated from the red (B04) and near-infrared (B08) bands, with the Sentinel-2 Scene Classification Layer (SCL) used to retain vegetation pixels. Both maps use the same spatial extent and NDVI scale, allowing direct visual comparison of vegetation greenness across the three-week period.  
 
-The comparison shows a widespread reduction in vegetation greenness across the park by 18th July, although the two-date comparison is intended as a descriptive snapshot rather than evidence of a longer-term trend.
+The comparison shows a moderate widespread reduction in vegetation greenness across the park from 8th July (mean NDVI  = 0.545) to 18th July (mean NDVI = 0.482), although the two-date comparison is intended as a descriptive snapshot rather than evidence of a longer-term trend.
 
 <p align="center">
   <img src="figures/Phoenix Park NDVI - 8 July 2026.png"
